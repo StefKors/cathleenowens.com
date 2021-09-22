@@ -21,6 +21,7 @@
     "cookies": "^0.8.0",
     "nuxt": "^2.14.7",
     "nuxt-sm": "0.0.6",
+    "text-balancer": "^1.0.5",
     "vue-essential-slices": "^0.2.0",
     "vue-slicezone": "latest"
   },

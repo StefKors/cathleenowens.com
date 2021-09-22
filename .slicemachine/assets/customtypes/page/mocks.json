@@ -1,11 +1,50 @@
 {
-  "id": "4ef445be-27d2-4bfc-b709-f64c9bee7aaf",
-  "uid": "corrupti-dolores-molestias",
+  "id": "773437e4-fc0b-42c5-9761-31312b08c934",
+  "uid": "quia-eveniet-ipsam",
   "type": "page",
   "data": {
-    "ByLine": "implement distributed mindshare",
-    "meta_title": "unleash bleeding-edge networks",
-    "meta_description": "harness impactful e-commerce",
+    "ByLine": "Photographic Print, Inkjet on 220 gr paper",
+    "Introduction": [
+      {
+        "type": "paragraph",
+        "text": "Nostrud nulla elit duis tempor ex id tempor do deserunt officia aliquip exercitation et ullamco.",
+        "spans": []
+      }
+    ],
+    "Article": [
+      {
+        "type": "heading2",
+        "text": "Evolve transparent interfaces",
+        "spans": []
+      },
+      {
+        "type": "paragraph",
+        "text": "Aliqua laboris fugiat veniam nisi officia eiusmod commodo deserunt consequat.",
+        "spans": []
+      }
+    ],
+    "tags": [
+      {
+        "tag": {
+          "link_type": "Web",
+          "url": "https://prismic.io"
+        }
+      },
+      {
+        "tag": {
+          "link_type": "Web",
+          "url": "https://prismic.io"
+        }
+      },
+      {
+        "tag": {
+          "link_type": "Web",
+          "url": "http://google.com"
+        }
+      }
+    ],
+    "meta_title": "productize frictionless functionalities",
+    "meta_description": "unleash global systems",
     "social_cards": [
       {
         "social_card_image": {
@@ -15,10 +54,10 @@
           },
           "alt": "Placeholder image",
           "copyright": null,
-          "url": "https://images.unsplash.com/photo-1600861194802-a2b11076bc51?w=900&h=500&fit=crop"
+          "url": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=900&h=500&fit=crop"
         },
-        "social_card_title": "target sticky niches",
-        "social_card_description": "engage collaborative methodologies"
+        "social_card_title": "innovate B2C infrastructures",
+        "social_card_description": "facilitate cutting-edge supply-chains"
       },
       {
         "social_card_image": {
@@ -28,10 +67,36 @@
           },
           "alt": "Placeholder image",
           "copyright": null,
-          "url": "https://images.unsplash.com/photo-1547394765-185e1e68f34e?w=900&h=500&fit=crop"
+          "url": "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=900&h=500&fit=crop"
         },
-        "social_card_title": "synergize proactive schemas",
-        "social_card_description": "empower synergistic users"
+        "social_card_title": "mesh efficient applications",
+        "social_card_description": "target front-end solutions"
+      },
+      {
+        "social_card_image": {
+          "dimensions": {
+            "width": 900,
+            "height": 500
+          },
+          "alt": "Placeholder image",
+          "copyright": null,
+          "url": "https://images.unsplash.com/photo-1589321599763-d66926c29613?w=900&h=500&fit=crop"
+        },
+        "social_card_title": "envisioneer distributed e-business",
+        "social_card_description": "optimize proactive web-readiness"
+      },
+      {
+        "social_card_image": {
+          "dimensions": {
+            "width": 900,
+            "height": 500
+          },
+          "alt": "Placeholder image",
+          "copyright": null,
+          "url": "https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=900&h=500&fit=crop"
+        },
+        "social_card_title": "architect one-to-one methodologies",
+        "social_card_description": "generate open-source web-readiness"
       }
     ]
   }

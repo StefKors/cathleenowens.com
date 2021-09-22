@@ -5,20 +5,22 @@
     "slice_type": "image_with_caption",
     "items": [],
     "primary": {
-      "title": [
-        {
-          "type": "heading1",
-          "text": "Enhance intuitive experiences",
-          "spans": []
-        }
-      ],
       "description": [
         {
           "type": "paragraph",
-          "text": "Tempor ad voluptate incididunt cillum reprehenderit mollit. Ipsum excepteur ad magna deserunt eiusmod sint quis veniam dolor amet incididunt qui.",
+          "text": "Ullamco laborum eu ullamco amet dolor fugiat irure.",
           "spans": []
         }
-      ]
+      ],
+      "Image": {
+        "dimensions": {
+          "width": 900,
+          "height": 500
+        },
+        "alt": "Placeholder image",
+        "copyright": null,
+        "url": "https://images.unsplash.com/photo-1547394765-185e1e68f34e?w=900&h=500&fit=crop"
+      }
     }
   }
 ]

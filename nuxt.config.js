@@ -11,7 +11,7 @@ export default {
   target: "static",
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: "slice-library-starter-nuxt",
+    title: "Cathleen Owens",
     meta: [{
       charset: "utf-8"
     }, {
@@ -24,8 +24,8 @@ export default {
     }],
     link: [{
       rel: "icon",
-      type: "image/x-icon",
-      href: "/favicon.ico"
+      type: "image/svg+xml",
+      href: "/favicon.svg"
     }]
   },
   // Global CSS (https://go.nuxtjs.dev/config-css)

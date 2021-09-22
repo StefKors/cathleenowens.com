@@ -11,14 +11,6 @@
       "version": "sktwi1xtmkfgx8626",
       "description": "ImageWithCaption",
       "primary": {
-        "title": {
-          "type": "StructuredText",
-          "config": {
-            "single": "heading1",
-            "label": "Title",
-            "placeholder": "This is where it all begins..."
-          }
-        },
         "description": {
           "type": "StructuredText",
           "config": {
@@ -26,6 +18,14 @@
             "label": "Description",
             "placeholder": "A nice description of your product"
           }
+        },
+        "Image": {
+          "config": {
+            "label": "",
+            "constraint": {},
+            "thumbnails": []
+          },
+          "type": "Image"
         }
       },
       "items": {}

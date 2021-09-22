@@ -1,0 +1,17 @@
+{
+  "id": "tag",
+  "label": "Tag",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "label": {
+        "config": {
+          "label": "",
+          "placeholder": ""
+        },
+        "type": "Text"
+      }
+    }
+  }
+}

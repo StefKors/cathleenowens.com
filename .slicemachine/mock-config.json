@@ -1,19 +1,26 @@
 {
   "slices": {
-    "ImageWithCaption": {
-      "default-slice": {
-        "primary": {
-          "caption": {
-            "config": {
-              "patternType": "PARAGRAPH",
-              "blocks": 1
-            }
-          }
-        }
-      }
-    }
+    "ImageWithCaption": {}
   },
   "_cts": {
-    "page": {}
+    "page": {
+      "tags": {},
+      "ByLine": {
+        "content": "Photographic Print, Inkjet on 220 gr paper"
+      },
+      "Introduction": {
+        "config": {
+          "patternType": "PARAGRAPH",
+          "blocks": 1
+        }
+      },
+      "Article": {
+        "config": {
+          "patternType": "STORY",
+          "blocks": 1
+        }
+      }
+    },
+    "tag": {}
   }
 }
