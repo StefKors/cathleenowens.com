@@ -1,0 +1,19 @@
+{
+  "slices": {
+    "ImageWithCaption": {
+      "default-slice": {
+        "primary": {
+          "caption": {
+            "config": {
+              "patternType": "PARAGRAPH",
+              "blocks": 1
+            }
+          }
+        }
+      }
+    }
+  },
+  "_cts": {
+    "page": {}
+  }
+}

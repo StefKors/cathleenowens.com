@@ -1,0 +1,38 @@
+{
+  "id": "4ef445be-27d2-4bfc-b709-f64c9bee7aaf",
+  "uid": "corrupti-dolores-molestias",
+  "type": "page",
+  "data": {
+    "ByLine": "implement distributed mindshare",
+    "meta_title": "unleash bleeding-edge networks",
+    "meta_description": "harness impactful e-commerce",
+    "social_cards": [
+      {
+        "social_card_image": {
+          "dimensions": {
+            "width": 900,
+            "height": 500
+          },
+          "alt": "Placeholder image",
+          "copyright": null,
+          "url": "https://images.unsplash.com/photo-1600861194802-a2b11076bc51?w=900&h=500&fit=crop"
+        },
+        "social_card_title": "target sticky niches",
+        "social_card_description": "engage collaborative methodologies"
+      },
+      {
+        "social_card_image": {
+          "dimensions": {
+            "width": 900,
+            "height": 500
+          },
+          "alt": "Placeholder image",
+          "copyright": null,
+          "url": "https://images.unsplash.com/photo-1547394765-185e1e68f34e?w=900&h=500&fit=crop"
+        },
+        "social_card_title": "synergize proactive schemas",
+        "social_card_description": "empower synergistic users"
+      }
+    ]
+  }
+}
