@@ -28,7 +28,7 @@ html {
   background: var(--background);
   font-size: 16px;
   color: var(--font);
-  line-height: 23px;
+  line-height: 1.4;
   padding: 40px;
 }
 

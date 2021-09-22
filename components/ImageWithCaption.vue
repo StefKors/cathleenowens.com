@@ -1,7 +1,7 @@
 <template>
   <section class='content-section container'>
     <prismic-image :field="slice.primary.Image"/>
-    <prismic-rich-text :field="slice.primary.description"/>
+    <prismic-rich-text class="caption" :field="slice.primary.description"/>
   </section>
 </template>
 
@@ -23,6 +23,11 @@ export default {
 .content-section img {
   max-width: 50vw;
 }
+
+.caption {
+  color: #6a74eb;
+}
+
 @media (max-width: 767px) {
   .content-section {
     margin-bottom: 2rem;

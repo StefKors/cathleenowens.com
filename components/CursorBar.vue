@@ -38,6 +38,7 @@ export default {
   mounted() {
     window.addEventListener("mousemove", this.handler, false);
     setTimeout(() => {
+      // console.log(this.params.length)
       this.rotation = "rotate(90deg)"
     }, 3000);
   },

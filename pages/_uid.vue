@@ -64,6 +64,7 @@ article {
   grid-template-columns: 1fr 1fr;
   margin-left: 5vw;
   margin-right: 5vw;
+  gap: 2rem;
 }
 .title {
   font-family: "Wremena";
@@ -94,5 +95,12 @@ article {
   padding: 3px 5px;
   background: rgba(149,158,251,0.20);
   text-decoration: none;
+}
+
+.tags {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  gap: .3rem;
 }
 </style>
