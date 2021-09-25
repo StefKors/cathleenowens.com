@@ -2,21 +2,45 @@
   <div class="page">
     <Header />
     <Nuxt />
-    <CursorBar rotation="rotate(0deg)" />
+    <CursorBar :rotation="rotation" />
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      rotation: "rotate(0deg)",
+    }
+  },
+  methods: {
+    updateRotation() {
+      const parts = window.location.pathname.split("/").filter((n) => n).length
+      this.rotation = `rotate(${(parts + 1) * 45}deg)`
+    },
+  },
+  mounted() {
+    this.updateRotation()
+  },
+  watch: {
+    $route() {
+      this.updateRotation()
+    },
+  },
+}
+</script>
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans&display=swap");
 
 :root {
-  --font: #3C3B43;
-  --background: #F8F7F4;
+  --font: #3c3b43;
+  --background: #f8f7f4;
 }
 
 html {
-  font-family: "Work Sans", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Work Sans", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;

@@ -2,7 +2,7 @@
   <div class="header">
     <div class="logo">
       <nuxt-link to="/">
-      By Cathleen Owens
+      Cathleen Owens
       </nuxt-link>
     </div>
 

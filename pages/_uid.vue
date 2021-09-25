@@ -5,7 +5,7 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
 <template>
   <article>
     <section class="content-section container">
-      <prismic-rich-text class="title" :field="document.data.title" />
+      <prismic-rich-text class="title balance-text" :field="document.data.title" />
       <div class="byline">{{ document.data.byline }}</div>
       <div class="tags" :v-if="document.tags.length">
         <NuxtLink
@@ -53,7 +53,7 @@ export default {
     }
   },
   mounted() {
-    textBalancer.balanceText(".title")
+    textBalancer.balanceText()
   }
 };
 </script>

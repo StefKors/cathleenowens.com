@@ -4,6 +4,9 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
 -->
 <template>
   <div class="homepage">
+    <div class="interactive">
+      <input type="range" name="range" id="range">
+    </div>
     <div class="tags">
       <div class="tag" v-for="tag in tags" :key="tag">
         {{ tag }}
@@ -76,6 +79,7 @@ export default {
   color: rgba(60, 59, 67, 0.5);
   cursor: pointer;
   text-decoration: none;
+  transition: cubic-bezier(0.165, 0.84, 0.44, 1) 0.5s;
 }
 
 .page:visited {
