@@ -5,8 +5,9 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
 <template>
   <div class="homepage">
     <div class="interactive">
-      <input type="range" name="range" id="range">
+      <input type="range" name="range" id="range" />
     </div>
+    <h1>All Work by Cathleen Owens</h1>
     <div class="tags">
       <div class="tag" v-for="tag in tags" :key="tag">
         {{ tag }}
@@ -26,28 +27,48 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
 </template>
 
 <script>
-import SliceZone from "vue-slicezone";
+import SliceZone from "vue-slicezone"
+import getMeta from "~/components/GetMeta"
 
 export default {
+  head() {
+    return getMeta(this.meta)
+  },
   components: {
     SliceZone,
   },
   async asyncData({ $prismic, params, error }) {
+    // get homepage data
+    const homepage = await $prismic.api.getSingle("home")
     // get all pages
     const pages = await $prismic.api.query(
       $prismic.predicates.at("document.type", "page")
-    );
+    )
 
     // get all tags
-    const tags = await $prismic.api.tags;
+    const tags = await $prismic.api.tags
+
+    // construct the meta tag data
+    const meta = {
+      title: homepage.data.meta_title,
+      description: homepage.data.meta_description,
+      date: homepage.last_publication_date,
+      url: "https://www.cathleenowens.com",
+      tags: tags,
+      social: {
+        image: homepage.data.social_cards[0]?.social_card_image.url,
+        title: homepage.data.social_cards[0]?.social_card_title,
+        description: homepage.data.social_cards[0]?.social_card_description,
+      },
+    }
 
     if (pages) {
-      return { pages, tags };
+      return { homepage, pages, tags, meta }
     } else {
-      error({ statusCode: 404, message: "Page not found" });
+      error({ statusCode: 404, message: "Page not found" })
     }
   },
-};
+}
 </script>
 
 <style scoped>
@@ -67,7 +88,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: .7rem;
+  gap: 0.7rem;
 }
 
 .pages {
