@@ -5,7 +5,28 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
 <template>
   <div class="homepage">
     <div class="interactive">
-      <input type="range" name="range" id="range" />
+      <div class="col">
+        <slice-zone
+          :type="homepage.type"
+          :uid="homepage.id"
+          :resolver="({ sliceName }) => slices[sliceName]"
+        />
+        <input type="range" name="range" id="range" />
+      </div>
+      <div class="col">
+        <prismic-rich-text
+          class="title balance-text"
+          :field="homepage.data.title"
+        />
+        <prismic-rich-text
+          class="title balance-text"
+          :field="homepage.data.subtitle"
+        />
+        <prismic-rich-text
+          class="title balance-text"
+          :field="homepage.data.introduction"
+        />
+      </div>
     </div>
     <h1>All Work by Cathleen Owens</h1>
     <div class="tags">
@@ -28,6 +49,7 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
 
 <script>
 import SliceZone from "vue-slicezone"
+import SliderClip from "~/components/SliderClip"
 import getMeta from "~/components/GetMeta"
 
 export default {
@@ -36,6 +58,13 @@ export default {
   },
   components: {
     SliceZone,
+  },
+  data() {
+    return {
+      slices: {
+        SliderClip,
+      },
+    }
   },
   async asyncData({ $prismic, params, error }) {
     // get homepage data
