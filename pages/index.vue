@@ -19,9 +19,19 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
           playsinline
           preload="auto"
           muted
-        ></video>
+          crossorigin="anonymous"
+        >
+          <track
+            label="English"
+            kind="subtitles"
+            srclang="en"
+            :src="this.allClips[this.selectedRange].subtitle.url"
+            default
+          />
+        </video>
       </transition>
       <input
+        class="range-slider"
         type="range"
         v-model="selectedRange"
         name="range"
@@ -30,9 +40,8 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
         :max="allClips.length"
       />
     </div>
-    {{ transition }}
     <prismic-rich-text
-      class="title balance-text"
+      class="project-title balance-text"
       :field="homepage.data.title"
     />
     <div class="tags">
@@ -40,14 +49,14 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
         {{ tag }}
       </div>
     </div>
-    <div class="pages">
+    <div class="pages-list">
       <NuxtLink
-        class="page"
+        class="page-link"
         v-for="page in pages.results"
         :key="page.id"
         :to="page.url"
       >
-        <prismic-rich-text class="title" :field="page.data.title" />
+        <prismic-rich-text :field="page.data.title" />
       </NuxtLink>
     </div>
   </div>
@@ -55,6 +64,7 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
 
 <script>
 import getMeta from "~/components/GetMeta"
+import textBalancer from "text-balancer"
 
 export default {
   head() {
@@ -75,27 +85,25 @@ export default {
   watch: {
     selectedRange(val, prevVal) {
       if (val > prevVal) {
-        console.log(val, prevVal, "animate next")
         // animate next
         this.transition = "slide-next"
       } else {
         // animate prev
-        console.log(val, prevVal, "animate prev")
         this.transition = "slide-prev"
       }
     },
   },
   mounted() {
+    textBalancer.balanceText()
+
     const video = this.$refs.videoPlayer
 
     video.addEventListener("loadstart", (event) => {
-      console.log("started loading video!")
       const height = video.clientHeight
       this.playerHeight = this.toPX(height)
     })
 
     video.addEventListener("playing", (event) => {
-      console.log("started playing")
       this.playerHeight = "auto"
     })
   },
@@ -137,6 +145,10 @@ export default {
 </script>
 
 <style scoped>
+.range-slider {
+  /* margin-top */
+}
+
 .tags .tag {
   margin-top: 1rem;
   background: rgba(119, 119, 255, 0.329);
@@ -156,38 +168,52 @@ export default {
   gap: 0.7rem;
 }
 
-.pages {
-  font-size: 32px;
-  text-align: center;
+.pages-list {
+  margin-top: 2rem;
+  font-size: 18px;
+  line-height: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.page {
+.page-link {
   color: rgba(60, 59, 67, 0.5);
   cursor: pointer;
   text-decoration: none;
+  text-align: center;
   transition: cubic-bezier(0.165, 0.84, 0.44, 1) 0.5s;
 }
 
-.page:visited {
-  color: rgba(106, 116, 235, 1);
+.page-link:hover {
+  color: rgba(60, 59, 67, 1);
 }
 
-.page:hover {
-  color: rgba(60, 59, 67, 1);
+.project-title {
+  text-align: center;
+  font-family: "Wremena";
+  font-weight: bold;
+  font-size: 32px;
+  color: #3c3b43;
+  line-height: 70px;
+  margin: 0 auto;
 }
 
 .interactive {
   display: flex;
   flex-direction: column;
+  gap: 2rem;
   width: 70vw;
-  max-width: 1400px;
-  margin: 5rem auto 2rem;
+  max-width: 1080px;
+  margin: 5rem auto 5rem;
 }
 
 .interactive video {
   width: 100%;
   border-radius: 8px;
   aspect-ratio: 1.5;
+  max-width: 1080px;
+  max-height: 720px;
 }
 
 .slide-next-enter-active,
