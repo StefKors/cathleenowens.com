@@ -53,7 +53,7 @@ export default {
   build: {
     transpile: ["vue-slicezone", "nuxt-sm"]
   },
-  storybook :{
+  storybook: {
     stories: [...getStoriesPaths(), /*...*/]
   }
 };

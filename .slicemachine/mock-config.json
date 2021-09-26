@@ -1,6 +1,11 @@
 {
   "slices": {
-    "ImageWithCaption": {}
+    "ImageWithCaption": {},
+    "SliderClip": {
+      "default": {
+        "primary": {}
+      }
+    }
   },
   "_cts": {
     "page": {

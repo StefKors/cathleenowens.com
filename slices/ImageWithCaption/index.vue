@@ -1,13 +1,12 @@
 <template>
-  <section class="section">
-    <prismic-rich-text :field="slice.primary.title" class="title" />
-    <prismic-rich-text :field="slice.primary.description" />
+  <section class="content-section container">
+    <prismic-image :field="slice.primary.Image" />
+    <prismic-rich-text class="caption" :field="slice.primary.description" />
   </section>
 </template>
 
 <script>
 export default {
-  name: "ImageWithCaption",
   props: {
     slice: {
       type: Object,
@@ -21,17 +20,17 @@ export default {
 </script>
 
 <style scoped>
-.section {
-  position: relative;
-  background: #f7f7f7;
-  color: #111;
-  padding: 4em;
-  text-align: center;
+.content-section img {
+  max-width: 50vw;
 }
-a {
-  color: #111;
+
+.caption {
+  color: #6a74eb;
 }
-.title {
-  margin-bottom: 2em;
+
+@media (max-width: 767px) {
+  .content-section {
+    margin-bottom: 2rem;
+  }
 }
 </style>

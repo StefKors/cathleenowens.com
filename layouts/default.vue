@@ -2,32 +2,32 @@
   <div class="page">
     <Header />
     <Nuxt />
-    <CursorBar :rotation="rotation" />
+    <!-- <CursorBar /> -->
   </div>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      rotation: "rotate(0deg)",
-    }
-  },
-  methods: {
-    updateRotation() {
-      const parts = window.location.pathname.split("/").filter((n) => n).length
-      this.rotation = `rotate(${(parts + 1) * 45}deg)`
-    },
-  },
-  mounted() {
-    this.updateRotation()
-  },
-  watch: {
-    $route() {
-      this.updateRotation()
-    },
-  },
-}
+// export default {
+//   data() {
+//     return {
+//       rotation: "rotate(0deg)",
+//     }
+//   },
+//   methods: {
+//     updateRotation() {
+//       const parts = window.location.pathname.split("/").filter((n) => n).length
+//       this.rotation = `rotate(${(parts + 1) * 45}deg)`
+//     },
+//   },
+//   mounted() {
+//     this.updateRotation()
+//   },
+//   watch: {
+//     $route() {
+//       this.updateRotation()
+//     },
+//   },
+// }
 </script>
 
 <style>
@@ -70,5 +70,11 @@ html {
 
 img {
   width: 100%;
+}
+
+.shadow {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.07),
+    0 4px 8px rgba(0, 0, 0, 0.07), 0 8px 16px rgba(0, 0, 0, 0.07),
+    0 16px 32px rgba(0, 0, 0, 0.07), 0 32px 64px rgba(0, 0, 0, 0.07);
 }
 </style>

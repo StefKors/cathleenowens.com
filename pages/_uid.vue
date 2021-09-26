@@ -5,7 +5,10 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
 <template>
   <article>
     <section class="content-section container">
-      <prismic-rich-text class="title balance-text" :field="document.data.title" />
+      <prismic-rich-text
+        class="title balance-text"
+        :field="document.data.title"
+      />
       <div class="byline">{{ document.data.byline }}</div>
       <div class="tags" :v-if="document.tags.length">
         <NuxtLink
@@ -15,7 +18,10 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
           >{{ tag }}</NuxtLink
         >
       </div>
-      <prismic-rich-text class="introduction" :field="document.data.introduction" />
+      <prismic-rich-text
+        class="introduction"
+        :field="document.data.introduction"
+      />
       <prismic-rich-text class="article" :field="document.data.article" />
     </section>
     <section>
@@ -29,9 +35,9 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
 </template>
 
 <script>
-import SliceZone from "vue-slicezone";
-import ImageWithCaption from "~/components/ImageWithCaption";
-import textBalancer from 'text-balancer'
+import SliceZone from "vue-slicezone"
+import ImageWithCaption from "~/slices/ImageWithCaption"
+import textBalancer from "text-balancer"
 
 export default {
   components: {
@@ -42,20 +48,20 @@ export default {
       slices: {
         ImageWithCaption,
       },
-    };
+    }
   },
   async asyncData({ $prismic, params, error }) {
-    const document = await $prismic.api.getByUID("page", params.uid);
+    const document = await $prismic.api.getByUID("page", params.uid)
     if (document) {
-      return { document };
+      return { document }
     } else {
-      error({ statusCode: 404, message: "Page not found" });
+      error({ statusCode: 404, message: "Page not found" })
     }
   },
   mounted() {
     textBalancer.balanceText()
-  }
-};
+  },
+}
 </script>
 <style scoped>
 article {
@@ -70,7 +76,7 @@ article {
   font-family: "Wremena";
   font-weight: bold;
   font-size: 82px;
-  color: #3C3B43;
+  color: #3c3b43;
   line-height: 80px;
 }
 .byline {
@@ -93,7 +99,7 @@ article {
   color: #6a74eb;
   text-align: center;
   padding: 3px 5px;
-  background: rgba(149,158,251,0.20);
+  background: rgba(149, 158, 251, 0.2);
   text-decoration: none;
 }
 
@@ -101,6 +107,6 @@ article {
   display: flex;
   flex-direction: row;
   justify-content: left;
-  gap: .3rem;
+  gap: 0.3rem;
 }
 </style>

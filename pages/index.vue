@@ -5,28 +5,21 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
 <template>
   <div class="homepage">
     <div class="interactive">
-      <div class="col">
-        <slice-zone
-          :type="homepage.type"
-          :uid="homepage.id"
-          :resolver="({ sliceName }) => slices[sliceName]"
-        />
-        <input type="range" name="range" id="range" />
-      </div>
-      <div class="col">
-        <prismic-rich-text
-          class="title balance-text"
-          :field="homepage.data.title"
-        />
-        <prismic-rich-text
-          class="title balance-text"
-          :field="homepage.data.subtitle"
-        />
-        <prismic-rich-text
-          class="title balance-text"
-          :field="homepage.data.introduction"
-        />
-      </div>
+      <video
+        class="slider shadow"
+        controls
+        autoplay
+        disablepictureinpicture
+        disableremoteplayback
+        loop
+        playsinline
+        preload="auto"
+        muted
+        v-for="slide in homepage.data.slider"
+        :key="slide.clip.size"
+        :src="slide.clip.url"
+      ></video>
+      <input type="range" name="range" id="range" />
     </div>
     <h1>All Work by Cathleen Owens</h1>
     <div class="tags">
@@ -48,23 +41,11 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
 </template>
 
 <script>
-import SliceZone from "vue-slicezone"
-import SliderClip from "~/components/SliderClip"
 import getMeta from "~/components/GetMeta"
 
 export default {
   head() {
     return getMeta(this.meta)
-  },
-  components: {
-    SliceZone,
-  },
-  data() {
-    return {
-      slices: {
-        SliderClip,
-      },
-    }
   },
   async asyncData({ $prismic, params, error }) {
     // get homepage data
@@ -138,5 +119,18 @@ export default {
 
 .page:hover {
   color: rgba(60, 59, 67, 1);
+}
+
+.interactive {
+  display: flex;
+  flex-direction: column;
+  width: 70vw;
+  max-width: 1400px;
+  margin: 5rem auto 2rem;
+}
+
+.interactive video {
+  width: 100%;
+  border-radius: 8px;
 }
 </style>
