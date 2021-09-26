@@ -5,7 +5,7 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
 <template>
   <div class="homepage">
     <div v-if="this.allClips" class="interactive">
-      <transition name="fade" mode="out-in">
+      <transition :name="transition" mode="out-in">
         <video
           :key="selectedRange"
           :src="this.allClips[this.selectedRange].clip.url"
@@ -30,6 +30,7 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
         :max="allClips.length"
       />
     </div>
+    {{ transition }}
     <prismic-rich-text
       class="title balance-text"
       :field="homepage.data.title"
@@ -63,11 +64,25 @@ export default {
     return {
       selectedRange: 0,
       playerHeight: "auto",
+      transition: "slide-next",
     }
   },
   methods: {
     toPX: function (value) {
       return `${value}px`
+    },
+  },
+  watch: {
+    selectedRange(val, prevVal) {
+      if (val > prevVal) {
+        console.log(val, prevVal, "animate next")
+        // animate next
+        this.transition = "slide-next"
+      } else {
+        // animate prev
+        console.log(val, prevVal, "animate prev")
+        this.transition = "slide-prev"
+      }
     },
   },
   mounted() {
@@ -175,18 +190,33 @@ export default {
   aspect-ratio: 1.5;
 }
 
-.fade-enter-active {
+.slide-next-enter-active,
+.slide-next-leave-active {
   transition: cubic-bezier(0.165, 0.84, 0.44, 1) 200ms;
-  transition-property: opacity;
 }
-
-.fade-leave-active {
-  transition: cubic-bezier(0.165, 0.84, 0.44, 1) 200ms;
-  transition-property: opacity;
-}
-
-.fade-enter,
-.fade-leave-to {
+.slide-next-enter,
+.slide-next-leave-active {
   opacity: 0;
+}
+.slide-next-enter {
+  transform: translateX(31px);
+}
+.slide-next-leave-active {
+  transform: translateX(-31px);
+}
+
+.slide-prev-enter-active,
+.slide-prev-leave-active {
+  transition: cubic-bezier(0.165, 0.84, 0.44, 1) 200ms;
+}
+.slide-prev-enter,
+.slide-prev-leave-active {
+  opacity: 0;
+}
+.slide-prev-enter {
+  transform: translateX(-31px);
+}
+.slide-prev-leave-active {
+  transform: translateX(31px);
 }
 </style>
