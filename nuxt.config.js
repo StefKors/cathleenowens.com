@@ -38,12 +38,27 @@ export default {
   buildModules: [],
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [["@nuxtjs/prismic", {
-    endpoint: smConfig.apiEndpoint || "",
+    endpoint: smConfig.apiEndpoint || "https://cathleenowens.cdn.prismic.io/api/v2",
     apiOptions: {
       routes: [{
         type: "page",
         path: "/:uid"
       }]
+    },
+    linkResolver: function (doc) {
+      if (doc.isBroken) {
+        return '/not-found';
+      }
+
+      if (doc.type === 'home') {
+        return '/';
+      }
+
+      if (doc.type === 'page') {
+        return '/' + doc.uid;
+      }
+
+      return '/not-found';
     }
   }], ["nuxt-sm"]],
   generate: {
