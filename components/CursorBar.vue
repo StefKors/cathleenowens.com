@@ -4,8 +4,6 @@
     v-bind:style="{
       left: toPX(x),
       top: toPX(y),
-      width: toPX(width),
-      height: toPX(height),
       transform: rotation,
       opacity: x != undefined || y != undefined ? 1 : 0,
     }"
@@ -14,11 +12,11 @@
 
 <script>
 export default {
-  props: ["rotation"],
   data() {
     return {
       x: undefined,
       y: undefined,
+      rotation: "rotate(0deg)",
     }
   },
   methods: {

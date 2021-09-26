@@ -35,11 +35,15 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
 </template>
 
 <script>
+import getMeta from "~/components/GetMeta"
 import SliceZone from "vue-slicezone"
 import ImageWithCaption from "~/slices/ImageWithCaption"
 import textBalancer from "text-balancer"
 
 export default {
+  head() {
+    return getMeta(this.meta)
+  },
   components: {
     SliceZone,
   },
@@ -52,8 +56,22 @@ export default {
   },
   async asyncData({ $prismic, params, error }) {
     const document = await $prismic.api.getByUID("page", params.uid)
+
+    // construct the meta tag data
+    const meta = {
+      title: document.data.meta_title,
+      description: document.data.meta_description,
+      date: document.last_publication_date,
+      url: "https://www.cathleenowens.com",
+      social: {
+        image: document.data.social_cards[0]?.social_card_image.url,
+        title: document.data.social_cards[0]?.social_card_title,
+        description: document.data.social_cards[0]?.social_card_description,
+      },
+    }
+
     if (document) {
-      return { document }
+      return { document, meta }
     } else {
       error({ statusCode: 404, message: "Page not found" })
     }

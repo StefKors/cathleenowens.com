@@ -13,12 +13,12 @@ const fallback = {
 
 export default (meta) => {
   return {
-    title: meta.title || fallback.title,
+    title: meta?.title || fallback.title,
     meta: [
       {
         hid: "description",
         name: "description",
-        content: (meta.description) || description,
+        content: (meta?.description) || fallback.description,
       },
       {
         hid: "og:type",
@@ -53,12 +53,12 @@ export default (meta) => {
       {
         hid: "twitter:title",
         name: "twitter:title",
-        content: (meta && meta.title) || title,
+        content: meta?.title || fallback.title,
       },
       {
         hid: "twitter:description",
         name: "twitter:description",
-        content: (meta && meta.description) || description,
+        content: meta?.description || fallback.description,
       },
       {
         hid: "twitter:image",
@@ -78,7 +78,7 @@ export default (meta) => {
       { name: "twitter:label2", content: "Grouped in" },
       {
         name: "twitter:data2",
-        content: meta?.tags.length ? meta?.tags.toString() : fallback.tags.toString(),
+        content: meta?.tags?.length || 0 ? meta?.tags.toString() : fallback.tags.toString(),
       },
     ],
     link: [
