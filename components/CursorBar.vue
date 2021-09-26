@@ -29,7 +29,7 @@ export default {
     },
     updateRotation() {
       const parts = window.location.pathname.split("/").filter((n) => n).length
-      this.rotation = `rotate(${parts * 90}deg)`
+      this.rotation = `rotate(${parts + 1 * 90}deg)`
     },
   },
   watch: {

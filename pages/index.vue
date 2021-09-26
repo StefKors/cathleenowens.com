@@ -4,24 +4,37 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
 -->
 <template>
   <div class="homepage">
-    <div class="interactive">
-      <video
-        class="slider shadow"
-        controls
-        autoplay
-        disablepictureinpicture
-        disableremoteplayback
-        loop
-        playsinline
-        preload="auto"
-        muted
-        v-for="slide in homepage.data.slider"
-        :key="slide.clip.size"
-        :src="slide.clip.url"
-      ></video>
-      <input type="range" name="range" id="range" />
+    <div v-if="this.allClips" class="interactive">
+      <div></div>
+      <transition name="fade" mode="in-out" appear>
+        <video
+          :key="selectedRange"
+          :src="this.allClips[this.selectedRange].clip.url"
+          ref="videoPlayer"
+          class="slider shadow"
+          controls
+          autoplay
+          disablepictureinpicture
+          disableremoteplayback
+          loop
+          playsinline
+          preload="auto"
+          muted
+        ></video>
+      </transition>
+      <input
+        type="range"
+        v-model="selectedRange"
+        name="range"
+        id="range"
+        min="0"
+        :max="allClips.length"
+      />
     </div>
-    <h1>All Work by Cathleen Owens</h1>
+    <prismic-rich-text
+      class="title balance-text"
+      :field="homepage.data.title"
+    />
     <div class="tags">
       <div class="tag" v-for="tag in tags" :key="tag">
         {{ tag }}
@@ -46,6 +59,31 @@ import getMeta from "~/components/GetMeta"
 export default {
   head() {
     return getMeta(this.meta)
+  },
+  data() {
+    return {
+      selectedRange: 0,
+      playerHeight: "auto",
+    }
+  },
+  methods: {
+    toPX: function (value) {
+      return `${value}px`
+    },
+  },
+  mounted() {
+    const video = this.$refs.videoPlayer
+
+    video.addEventListener("loadstart", (event) => {
+      console.log("started loading video!")
+      const height = video.clientHeight
+      this.playerHeight = this.toPX(height)
+    })
+
+    video.addEventListener("playing", (event) => {
+      console.log("started playing")
+      this.playerHeight = "auto"
+    })
   },
   async asyncData({ $prismic, params, error }) {
     // get homepage data
@@ -72,8 +110,11 @@ export default {
       },
     }
 
+    // store the complete array of clips in a helper
+    const allClips = homepage.data.slider
+
     if (pages) {
-      return { homepage, pages, tags, meta }
+      return { homepage, pages, tags, meta, allClips }
     } else {
       error({ statusCode: 404, message: "Page not found" })
     }
@@ -132,5 +173,6 @@ export default {
 .interactive video {
   width: 100%;
   border-radius: 8px;
+  aspect-ratio: 1.5;
 }
 </style>
