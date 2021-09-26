@@ -14,23 +14,22 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
         <NuxtLink
           v-for="tag in document.tags"
           :key="tag"
-          :to="`/filter/${tag}`"
+          :to="`/?filter=${tag}#works`"
           >{{ tag }}</NuxtLink
         >
       </div>
       <prismic-rich-text
-        class="introduction"
+        class="introduction balance-text"
         :field="document.data.introduction"
       />
       <prismic-rich-text class="article" :field="document.data.article" />
     </section>
-    <section>
-      <slice-zone
-        type="page"
-        :uid="$route.params.uid"
-        :resolver="({ sliceName }) => slices[sliceName]"
-      />
-    </section>
+    <slice-zone
+      class="images"
+      type="page"
+      :uid="$route.params.uid"
+      :resolver="({ sliceName }) => slices[sliceName]"
+    />
   </article>
 </template>
 
@@ -85,25 +84,26 @@ export default {
 article {
   padding-top: 9rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(auto, 600px) minmax(400px, 600px);
   margin-left: 5vw;
   margin-right: 5vw;
   gap: 2rem;
 }
+
 .title {
-  font-family: "Wremena";
+  font-family: "Cardo", serif;
   font-weight: bold;
-  font-size: 82px;
+  font-size: 72px;
   color: #3c3b43;
-  line-height: 80px;
+  line-height: 0.9;
 }
 .byline {
   margin-top: 2rem;
 }
 .introduction {
-  font-size: 26px;
+  font-size: 22px;
   color: var(--font);
-  line-height: 32px;
+  line-height: 28px;
   margin-top: 1rem;
 }
 .article {
@@ -126,5 +126,45 @@ article {
   flex-direction: row;
   justify-content: left;
   gap: 0.3rem;
+}
+.images {
+  column-count: 2;
+}
+
+@media screen and (max-width: 1200px) {
+  .title {
+    font-size: 48px;
+    line-height: 1;
+  }
+  .images {
+    column-count: 1;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  article {
+    grid-template-columns: 1fr;
+  }
+
+  .images img {
+    width: 100%;
+  }
+
+  .title {
+    font-size: 48px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .title {
+    font-size: 48px;
+    line-height: 0.95;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .title {
+    font-size: 36px;
+    line-height: 0.95;
+  }
 }
 </style>

@@ -10,7 +10,7 @@
 <script></script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Work+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cardo:wght@700&family=Work+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 :root {
   --font: #3c3b43;
@@ -27,16 +27,26 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
-
+  scroll-behavior: smooth;
   background: var(--background);
   font-size: 16px;
   color: var(--font);
   line-height: 1.4;
   padding: 40px;
 }
+@media screen and (max-width: 700px) {
+  html {
+    padding: 2rem;
+  }
+}
+@media screen and (max-width: 500px) {
+  html {
+    padding: 1rem;
+  }
+}
 
 .page {
-  max-width: 1200px;
+  max-width: 1800px;
   margin: auto;
 }
 

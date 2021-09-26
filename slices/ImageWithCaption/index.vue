@@ -32,7 +32,6 @@ export default {
 
 <style scoped>
 .content-section img {
-  max-width: 50vw;
 }
 
 .caption {

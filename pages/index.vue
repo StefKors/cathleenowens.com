@@ -62,7 +62,7 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
         {{ tag }}
       </div>
     </div>
-    <div class="artworks-list">
+    <div id="works" class="artworks-list">
       <div
         class="page-link"
         v-for="page in allWorks"
@@ -126,6 +126,7 @@ export default {
       this.$router.push({
         path: this.$route.path,
         query: { filter: value },
+        hash: "works",
       })
     },
   },
@@ -309,6 +310,8 @@ input[type="range"]::-moz-range-track {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .page-link {
@@ -346,7 +349,7 @@ input[type="range"]::-moz-range-track {
 
 .project-title {
   text-align: center;
-  font-family: "Wremena";
+  font-family: "Cardo", serif;
   font-weight: bold;
   font-size: 32px;
   color: #3c3b43;
