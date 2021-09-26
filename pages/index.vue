@@ -11,15 +11,16 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
           :src="this.allClips[this.selectedRange].clip.url"
           ref="videoPlayer"
           class="slider shadow"
+          playsinline
+          muted
           controls
           autoplay
           disablepictureinpicture
           disableremoteplayback
           loop
-          playsinline
           preload="auto"
-          muted
           crossorigin="anonymous"
+          type="video/mp4"
         >
           <track
             label="English"
