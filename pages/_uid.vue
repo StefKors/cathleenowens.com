@@ -80,7 +80,7 @@ export default {
   },
 }
 </script>
-<style scoped>
+<style>
 article {
   padding-top: 9rem;
   display: grid;
