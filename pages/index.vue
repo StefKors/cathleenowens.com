@@ -147,7 +147,7 @@ export default {
 
 <style scoped>
 .range-slider {
-  /* margin-top */
+  cursor: pointer;
 }
 
 .tags .tag {

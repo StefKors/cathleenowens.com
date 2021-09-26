@@ -62,7 +62,10 @@ export default {
     }
   }], ["nuxt-sm"]],
   generate: {
-    fallback: true
+    fallback: true,
+    ignore: [
+      'components/CursorBar.vue'
+    ]
   },
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {

@@ -28,8 +28,9 @@ export default {
       this.y = event.clientY
     },
     updateRotation() {
-      const parts = window.location.pathname.split("/").filter((n) => n).length
-      this.rotation = `rotate(${(parts + 1) * 90}deg)`
+      const parts =
+        window.location.pathname.split("/").filter((n) => n).length + 1
+      this.rotation = `rotate(${parts * 90}deg)`
     },
   },
   watch: {
