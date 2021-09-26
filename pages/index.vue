@@ -5,8 +5,7 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
 <template>
   <div class="homepage">
     <div v-if="this.allClips" class="interactive">
-      <div></div>
-      <transition name="fade" mode="in-out" appear>
+      <transition name="fade" mode="out-in">
         <video
           :key="selectedRange"
           :src="this.allClips[this.selectedRange].clip.url"
@@ -174,5 +173,20 @@ export default {
   width: 100%;
   border-radius: 8px;
   aspect-ratio: 1.5;
+}
+
+.fade-enter-active {
+  transition: cubic-bezier(0.165, 0.84, 0.44, 1) 200ms;
+  transition-property: opacity;
+}
+
+.fade-leave-active {
+  transition: cubic-bezier(0.165, 0.84, 0.44, 1) 200ms;
+  transition-property: opacity;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
