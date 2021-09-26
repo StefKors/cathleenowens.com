@@ -31,6 +31,10 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
           />
         </video>
       </transition>
+      <div class="range-labels">
+        <div>Performance Art {{ percentArt }}%</div>
+        <div>Performance Anxiety {{ percentAnxiety }}%</div>
+      </div>
       <input
         class="range-slider"
         type="range"
@@ -38,7 +42,7 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
         name="range"
         id="range"
         min="0"
-        :max="allClips.length"
+        :max="allClips.length - 1"
       />
     </div>
     <prismic-rich-text
@@ -81,6 +85,16 @@ export default {
   methods: {
     toPX: function (value) {
       return `${value}px`
+    },
+  },
+  computed: {
+    percentAnxiety() {
+      return 100 - this.percentArt
+    },
+    percentArt() {
+      return (
+        (100 / (this.allClips.length + 1)) * (Number(this.selectedRange) + 1)
+      )
     },
   },
   watch: {
@@ -146,13 +160,42 @@ export default {
 </script>
 
 <style scoped>
+.range-labels {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.range-labels div + .range-labels div {
+  text-align: right;
+}
 .range-slider {
   cursor: pointer;
 }
 
+input[type="range"]::-webkit-slider-thumb,
+input[type="range"]::-moz-range-thumb {
+  background-color: #959efb;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 2rem;
+}
+
+input[type="range"] {
+  background-color: transparent;
+}
+
+input[type="range"]::-webkit-slider-runnable-track,
+input[type="range"]::-moz-range-track {
+  width: 100%;
+  height: 5px;
+  background: rgba(149, 158, 251, 0.2);
+  border-radius: 3px;
+}
+
 .tags .tag {
   margin-top: 1rem;
-  background: rgba(119, 119, 255, 0.329);
+  /* background: rgba(119, 119, 255, 0.329); */
   display: inline-block;
   font-size: 24px;
   color: #6a74eb;
@@ -197,7 +240,7 @@ export default {
   font-size: 32px;
   color: #3c3b43;
   line-height: 70px;
-  margin: 0 auto;
+  margin: auto;
 }
 
 .interactive {
@@ -206,7 +249,7 @@ export default {
   gap: 2rem;
   width: 70vw;
   max-width: 1080px;
-  margin: 5rem auto 5rem;
+  margin: 5rem auto 10rem;
 }
 
 .interactive video {
