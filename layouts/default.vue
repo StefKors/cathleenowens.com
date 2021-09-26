@@ -2,33 +2,11 @@
   <div class="page">
     <Header />
     <Nuxt />
-    <!-- <CursorBar /> -->
+    <CursorBar />
   </div>
 </template>
 
-<script>
-// export default {
-//   data() {
-//     return {
-//       rotation: "rotate(0deg)",
-//     }
-//   },
-//   methods: {
-//     updateRotation() {
-//       const parts = window.location.pathname.split("/").filter((n) => n).length
-//       this.rotation = `rotate(${(parts + 1) * 45}deg)`
-//     },
-//   },
-//   mounted() {
-//     this.updateRotation()
-//   },
-//   watch: {
-//     $route() {
-//       this.updateRotation()
-//     },
-//   },
-// }
-</script>
+<script></script>
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans&display=swap");
