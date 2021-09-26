@@ -1,6 +1,10 @@
 {
   "slices": {
-    "ImageWithCaption": {},
+    "ImageWithCaption": {
+      "default-slice": {
+        "primary": {}
+      }
+    },
     "SliderClip": {
       "default": {
         "primary": {}

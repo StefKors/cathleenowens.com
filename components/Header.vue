@@ -1,21 +1,17 @@
 <template>
   <div class="header">
     <div class="logo">
-      <nuxt-link to="/">
-      Cathleen Owens
-      </nuxt-link>
+      <nuxt-link to="/"> Cathleen Owens </nuxt-link>
     </div>
 
-    <div class="menu">
+    <!-- <div class="menu">
       <img src="/Menu.svg" alt="" srcset="">
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {}
 </script>
 
 <style>

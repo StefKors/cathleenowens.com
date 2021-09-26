@@ -3,6 +3,7 @@
     <Header />
     <Nuxt />
     <CursorBar />
+    <Footer />
   </div>
 </template>
 

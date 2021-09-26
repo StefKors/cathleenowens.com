@@ -50,19 +50,51 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
       :field="homepage.data.title"
     />
     <div class="tags">
-      <div class="tag" v-for="tag in tags" :key="tag">
+      <div
+        @click="setListState(tag)"
+        class="tag"
+        v-for="tag in visibleWorks"
+        :key="tag"
+        :style="{
+          opacity: filter.includes(tag) ? 1 : 0.5,
+        }"
+      >
         {{ tag }}
       </div>
     </div>
-    <div class="pages-list">
-      <NuxtLink
+    <div class="artworks-list">
+      <div
         class="page-link"
-        v-for="page in pages.results"
+        v-for="page in allWorks"
         :key="page.id"
-        :to="page.url"
+        :style="{
+          opacity: filter.includes(page.type) ? 1 : 0,
+        }"
+        :data-site-year="page.date.getFullYear()"
       >
-        <prismic-rich-text :field="page.data.title" />
-      </NuxtLink>
+        <a :href="page.url" v-if="page.url.startsWith('http')">
+          <span>
+            {{ $prismic.asText(page.title) }}
+          </span>
+          <span class="grow"></span>
+          <div class="details">
+            <span class="date">
+              {{ page.date.getFullYear() }}
+            </span>
+          </div>
+        </a>
+        <NuxtLink :to="page.url" v-else>
+          <span>
+            {{ $prismic.asText(page.title) }}
+          </span>
+          <span class="grow"></span>
+          <div class="details">
+            <span class="date">
+              {{ page.date.getFullYear() }}
+            </span>
+          </div>
+        </NuxtLink>
+      </div>
     </div>
   </div>
 </template>
@@ -86,8 +118,24 @@ export default {
     toPX: function (value) {
       return `${value}px`
     },
+    setListState(value) {
+      if (value == this.$route.query.filter) {
+        this.$router.push({ path: this.$route.path })
+        return
+      }
+      this.$router.push({
+        path: this.$route.path,
+        query: { filter: value },
+      })
+    },
   },
   computed: {
+    filter() {
+      if (this.$route.query.filter) {
+        return [this.$route.query.filter]
+      }
+      return this.visibleWorks
+    },
     percentAnxiety() {
       return 100 - this.percentArt
     },
@@ -125,13 +173,46 @@ export default {
   async asyncData({ $prismic, params, error }) {
     // get homepage data
     const homepage = await $prismic.api.getSingle("home")
-    // get all pages
-    const pages = await $prismic.api.query(
+    // get all artworks
+    const exhibitions = await $prismic.api.query(
+      $prismic.predicates.at("document.type", "exhibition")
+    )
+    // get all artworks
+    const artworks = await $prismic.api.query(
       $prismic.predicates.at("document.type", "page")
     )
 
+    let exhibitionUrls = exhibitions.results.map((exhibit) => {
+      return {
+        url: exhibit.data.website.url,
+        title: exhibit.data.title,
+        date: new Date(exhibit.data.date),
+        id: exhibit.id,
+        type: "Exhibit",
+      }
+    })
+
+    let artworkUrls = artworks.results.map((artwork) => {
+      return {
+        url: artwork.uid,
+        title: artwork.data.title,
+        date: new Date(artwork.data.date) ?? new Date(),
+        id: artwork.id,
+        type: "Artwork",
+      }
+    })
+
+    const allWorks = [...exhibitionUrls, ...artworkUrls].sort((a, b) => {
+      // Turn your strings into dates, and then subtract them
+      // to get a value that is either negative, positive, or zero.
+      // return 0
+      return b.date - a.date
+    })
+
+    const visibleWorks = Array.from(new Set(allWorks.map((work) => work.type)))
+
     // get all tags
-    const tags = await $prismic.api.tags
+    const tags = ["Artworks", "Exhibits"]
 
     // construct the meta tag data
     const meta = {
@@ -150,8 +231,17 @@ export default {
     // store the complete array of clips in a helper
     const allClips = homepage.data.slider
 
-    if (pages) {
-      return { homepage, pages, tags, meta, allClips }
+    if (artworks) {
+      return {
+        homepage,
+        artworks,
+        exhibitions,
+        tags,
+        meta,
+        visibleWorks,
+        allClips,
+        allWorks,
+      }
     } else {
       error({ statusCode: 404, message: "Page not found" })
     }
@@ -159,7 +249,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .range-labels {
   display: flex;
   flex-direction: row;
@@ -195,7 +285,6 @@ input[type="range"]::-moz-range-track {
 
 .tags .tag {
   margin-top: 1rem;
-  /* background: rgba(119, 119, 255, 0.329); */
   display: inline-block;
   font-size: 24px;
   color: #6a74eb;
@@ -203,6 +292,8 @@ input[type="range"]::-moz-range-track {
   padding: 6px 10px;
   background: rgba(149, 158, 251, 0.2);
   text-decoration: none;
+  user-select: none;
+  transition: cubic-bezier(0.165, 0.84, 0.44, 1) 0.5s opacity;
 }
 
 .tags {
@@ -210,26 +301,46 @@ input[type="range"]::-moz-range-track {
   flex-direction: row;
   justify-content: center;
   gap: 0.7rem;
+  cursor: pointer;
 }
 
-.pages-list {
+.artworks-list {
   margin-top: 2rem;
-  font-size: 18px;
-  line-height: 32px;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.8rem;
 }
 
 .page-link {
+  transition: cubic-bezier(0.165, 0.84, 0.44, 1) 0.5s opacity;
+}
+
+.page-link a {
   color: rgba(60, 59, 67, 0.5);
   cursor: pointer;
   text-decoration: none;
-  text-align: center;
+  /* text-align: center; */
   transition: cubic-bezier(0.165, 0.84, 0.44, 1) 0.5s;
+  font-size: 22px;
+  line-height: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.grow {
+  flex-grow: 1;
+  border-bottom: 1px dotted;
 }
 
-.page-link:hover {
+.page-link .details {
+  position: relative;
+}
+
+.details .date {
+  transition: cubic-bezier(0.165, 0.84, 0.44, 1) 0.2s opacity;
+}
+
+.page-link a:hover {
   color: rgba(60, 59, 67, 1);
 }
 
