@@ -61,7 +61,7 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
           opacity: filter.includes(tag) ? 1 : 0.5,
         }"
       >
-        {{ tag }}
+        {{ tag }}s
       </div>
     </div>
     <div id="works" class="artworks-list">
@@ -195,13 +195,13 @@ export default {
         title: exhibit.data.title,
         date: new Date(exhibit.data.date),
         id: exhibit.id,
-        type: "Exhibit",
+        type: "Exhibition",
       }
     })
 
     let artworkUrls = artworks.results.map((artwork) => {
       return {
-        url: artwork.uid,
+        url: `${artwork.type}/${artwork.uid}`,
         title: artwork.data.title,
         date: new Date(artwork.data.date) ?? new Date(),
         id: artwork.id,
@@ -211,7 +211,7 @@ export default {
 
     let publicationUrls = publications.results.map((publication) => {
       return {
-        url: publication.uid,
+        url: `${publication.type}/${publication.uid}`,
         title: publication.data.title,
         date: new Date(publication.data.date) ?? new Date(),
         id: publication.id,
@@ -373,7 +373,7 @@ input[type="range"]::-moz-range-track {
 
 .project-title {
   text-align: center;
-  font-family: "Cardo", serif;
+  font-family: "Cardo", monospace;
   font-weight: bold;
   font-size: 32px;
   color: #3c3b43;

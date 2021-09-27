@@ -24,13 +24,12 @@ export default {
       return `${value}px`
     },
     handler: function (event) {
-      this.x = event.clientX - 5000
-      this.y = event.clientY
+      this.x = event.clientX
+      this.y = event.clientY - 5000
     },
     updateRotation() {
-      const parts =
-        window.location.pathname.split("/").filter((n) => n).length + 1
-      this.rotation = `rotate(${parts * 90}deg)`
+      const parts = window.location.pathname.split("/").filter((n) => n).length
+      this.rotation = `rotate(${parts * 45}deg)`
     },
   },
   watch: {
@@ -56,8 +55,8 @@ export default {
   position: fixed;
   background: #959efb;
   box-shadow: 0 0 30px 30px #959efb;
-  height: 0px;
-  width: 10000px;
+  width: 0px;
+  height: 10000px;
   display: block;
   pointer-events: none;
 }

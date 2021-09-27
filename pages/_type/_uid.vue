@@ -54,7 +54,7 @@ export default {
     }
   },
   async asyncData({ $prismic, params, error }) {
-    const document = await $prismic.api.getByUID("page", params.uid)
+    const document = await $prismic.api.getByUID(params.type, params.uid)
 
     // construct the meta tag data
     const meta = {
@@ -91,7 +91,7 @@ article {
 }
 
 .title {
-  font-family: "Cardo", serif;
+  font-family: "Cardo", monospace;
   font-weight: bold;
   font-size: 72px;
   color: #3c3b43;
