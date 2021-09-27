@@ -55,7 +55,7 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
       <div
         @click="setListState(tag)"
         class="work-tag"
-        v-for="tag in visibleWorks"
+        v-for="tag in tags"
         :key="tag"
         :style="{
           opacity: filter.includes(tag) ? 1 : 0.5,
@@ -137,7 +137,7 @@ export default {
       if (this.$route.query.filter) {
         return [this.$route.query.filter]
       }
-      return this.visibleWorks
+      return this.tags
     },
     percentAnxiety() {
       return 100 - this.percentArt
@@ -176,7 +176,7 @@ export default {
   async asyncData({ $prismic, params, error }) {
     // get homepage data
     const homepage = await $prismic.api.getSingle("home")
-    // get all artworks
+    // get all exhibitions
     const exhibitions = await $prismic.api.query(
       $prismic.predicates.at("document.type", "exhibition")
     )
@@ -209,17 +209,29 @@ export default {
       }
     })
 
-    const allWorks = [...exhibitionUrls, ...artworkUrls].sort((a, b) => {
+    let publicationUrls = publications.results.map((publication) => {
+      return {
+        url: publication.uid,
+        title: publication.data.title,
+        date: new Date(publication.data.date) ?? new Date(),
+        id: publication.id,
+        type: "Publication",
+      }
+    })
+
+    const allWorks = [
+      ...exhibitionUrls,
+      ...artworkUrls,
+      ...publicationUrls,
+    ].sort((a, b) => {
       // Turn your strings into dates, and then subtract them
       // to get a value that is either negative, positive, or zero.
       // return 0
       return b.date - a.date
     })
 
-    const visibleWorks = Array.from(new Set(allWorks.map((work) => work.type)))
-
     // get all tags
-    const tags = ["Artworks", "Exhibits"]
+    const tags = Array.from(new Set(allWorks.map((work) => work.type)))
 
     // construct the meta tag data
     const meta = {
@@ -244,9 +256,8 @@ export default {
         publications,
         artworks,
         exhibitions,
-        tags,
         meta,
-        visibleWorks,
+        tags,
         allClips,
         allWorks,
       }
@@ -366,7 +377,7 @@ input[type="range"]::-moz-range-track {
   font-weight: bold;
   font-size: 32px;
   color: #3c3b43;
-  line-height: 70px;
+  line-height: 32px;
   margin: auto;
 }
 

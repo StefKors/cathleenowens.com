@@ -128,7 +128,7 @@ article {
   gap: 0.3rem;
 }
 .images {
-  column-count: 2;
+  column-count: 1;
 }
 
 @media screen and (max-width: 1200px) {
