@@ -122,7 +122,7 @@ export default {
     },
     setListState(value) {
       if (value == this.$route.query.filter) {
-        this.$router.push({ path: this.$route.path })
+        this.$router.push({ path: this.$route.path, hash: "works" })
         return
       }
       this.$router.push({

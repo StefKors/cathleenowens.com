@@ -20,9 +20,11 @@ export default {
 }
 </script>
 
-<style scoped>
-.embed {
+<style>
+.embed iframe {
   width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
 }
 .caption {
   color: #6a74eb;
