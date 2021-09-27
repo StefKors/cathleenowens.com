@@ -1,13 +1,22 @@
 <template>
-  <article>
-    <prismic-rich-text class="title balance-text" :field="about.data.title" />
-    <prismic-rich-text class="" :field="about.data.about" />
-    <img loading="lazy" :srcset="params(about.data.image.url, 500, 800)" />
-  </article>
+  <div>
+    <Gooey intensity="weak" />
+    <article class="about">
+      <div class="column">
+        <div class="title balance-text">
+          {{ $prismic.asText(about.data.title) }}
+        </div>
+        <prismic-rich-text class="" :field="about.data.about" />
+      </div>
+      <img loading="lazy" :srcset="params(about.data.image.url, 500, 800)" />
+    </article>
+  </div>
 </template>
 
 <script>
+import Gooey from "../components/Gooey.vue"
 export default {
+  components: { Gooey },
   async asyncData({ $prismic, params, error }) {
     const about = await $prismic.api.getSingle("about")
 
@@ -45,11 +54,37 @@ export default {
 </script>
 
 <style>
-.title {
+.about .title {
   font-family: "Cardo", monospace;
   font-weight: bold;
   font-size: 72px;
   color: #3c3b43;
   line-height: 0.9;
+}
+
+.about .column {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  z-index: 1;
+}
+
+.about {
+  padding-top: 9rem;
+  display: grid;
+  grid-template-columns: minmax(auto, 600px) minmax(400px, 600px);
+  margin-left: 5vw;
+  margin-right: 5vw;
+  gap: 2rem;
+}
+
+@media screen and (max-width: 700px) {
+  .about {
+    grid-template-columns: 1fr;
+  }
+}
+
+.about img {
+  z-index: -1;
 }
 </style>
