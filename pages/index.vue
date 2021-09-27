@@ -182,7 +182,7 @@ export default {
     )
     // get all artworks
     const artworks = await $prismic.api.query(
-      $prismic.predicates.at("document.type", "page")
+      $prismic.predicates.at("document.type", "artwork")
     )
     // get all publications
     const publications = await $prismic.api.query(
