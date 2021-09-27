@@ -42,7 +42,16 @@ export default {
     apiOptions: {
       routes: [{
         type: "page",
-        path: "/:type/:uid"
+        path: "/page/:uid"
+      }, {
+        type: "artwork",
+        path: "/artwork/:uid"
+      }, {
+        type: "exhibition",
+        path: "/exhibition/:uid"
+      }, {
+        type: "publication",
+        path: "/publication/:uid"
       }]
     },
     linkResolver: function (doc) {
