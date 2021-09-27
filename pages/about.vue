@@ -46,7 +46,7 @@ export default {
 
 <style>
 .title {
-  font-family: "Cardo", serif;
+  font-family: "Cardo", monospace;
   font-weight: bold;
   font-size: 72px;
   color: #3c3b43;
