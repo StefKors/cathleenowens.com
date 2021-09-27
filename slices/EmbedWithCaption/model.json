@@ -1,0 +1,33 @@
+{
+  "id": "embed_with_caption",
+  "type": "SharedSlice",
+  "name": "EmbedWithCaption",
+  "description": "EmbedWithCaption",
+  "variations": [
+    {
+      "id": "default-slice",
+      "name": "Default slice",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "EmbedWithCaption",
+      "primary": {
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "single": "paragraph",
+            "label": "Description",
+            "placeholder": "A nice description of your product"
+          }
+        },
+        "embed": {
+          "config": {
+            "label": "Embed",
+            "placeholder": ""
+          },
+          "type": "Embed"
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -9,6 +9,11 @@
       "default": {
         "primary": {}
       }
+    },
+    "EmbedWithCaption": {
+      "default-slice": {
+        "primary": {}
+      }
     }
   },
   "_cts": {

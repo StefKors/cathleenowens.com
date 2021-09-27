@@ -184,6 +184,10 @@ export default {
     const artworks = await $prismic.api.query(
       $prismic.predicates.at("document.type", "page")
     )
+    // get all publications
+    const publications = await $prismic.api.query(
+      $prismic.predicates.at("document.type", "publication")
+    )
 
     let exhibitionUrls = exhibitions.results.map((exhibit) => {
       return {
@@ -237,6 +241,7 @@ export default {
     if (artworks) {
       return {
         homepage,
+        publications,
         artworks,
         exhibitions,
         tags,
