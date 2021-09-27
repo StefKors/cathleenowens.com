@@ -50,8 +50,8 @@ export default {
   data() {
     return {
       slices: {
-        ImageWithCaption,
         EmbedWithCaption,
+        ImageWithCaption,
       },
     }
   },

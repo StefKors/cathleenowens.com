@@ -201,7 +201,7 @@ export default {
 
     let artworkUrls = artworks.results.map((artwork) => {
       return {
-        url: `${artwork.type}/${artwork.uid}`,
+        url: artwork.url,
         title: artwork.data.title,
         date: new Date(artwork.data.date) ?? new Date(),
         id: artwork.id,
@@ -211,7 +211,7 @@ export default {
 
     let publicationUrls = publications.results.map((publication) => {
       return {
-        url: `${publication.type}/${publication.uid}`,
+        url: publication.url,
         title: publication.data.title,
         date: new Date(publication.data.date) ?? new Date(),
         id: publication.id,
