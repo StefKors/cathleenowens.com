@@ -5,6 +5,9 @@ if (!smConfig.apiEndpoint) {
 }
 
 const { getStoriesPaths } = require('slice-machine-ui/helpers/storybook')
+{/* <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cardo:wght@700&family=Work+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">  */}
 
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
@@ -26,6 +29,16 @@ export default {
       rel: "icon",
       type: "image/svg+xml",
       href: "/favicon.svg"
+    }, {
+      rel: "preconnect",
+      href: "https://fonts.googleapis.com"
+    }, {
+      rel: "preconnect",
+      crossorigin: true,
+      href: "https://fonts.gstatic.com"
+    }, {
+      rel: "stylesheet",
+      href: "https://fonts.googleapis.com/css2?family=Cardo:wght@700&family=Work+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
     }]
   },
   // Global CSS (https://go.nuxtjs.dev/config-css)
