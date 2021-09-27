@@ -26,7 +26,7 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
     </section>
     <slice-zone
       class="images"
-      type="page"
+      :type="$route.params.type"
       :uid="$route.params.uid"
       :resolver="({ sliceName }) => slices[sliceName]"
     />
@@ -37,6 +37,7 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
 import getMeta from "~/components/GetMeta"
 import SliceZone from "vue-slicezone"
 import ImageWithCaption from "~/slices/ImageWithCaption"
+import EmbedWithCaption from "~/slices/EmbedWithCaption"
 import textBalancer from "text-balancer"
 
 export default {
@@ -50,6 +51,7 @@ export default {
     return {
       slices: {
         ImageWithCaption,
+        EmbedWithCaption,
       },
     }
   },
