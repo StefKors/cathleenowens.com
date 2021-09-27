@@ -5,6 +5,8 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
 <template>
   <div class="homepage">
     <div v-if="this.allClips" class="interactive">
+      <!-- <div class="videowrapper">
+        <div class="centerwrapper"> -->
       <transition :name="transition" mode="out-in">
         <video
           :key="selectedRange"
@@ -31,9 +33,10 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
           />
         </video>
       </transition>
+
       <div class="range-labels">
-        <div>Performance Art {{ percentArt }}%</div>
-        <div>Performance Anxiety {{ percentAnxiety }}%</div>
+        <div class="range-label">Performance Art {{ percentArt }}%</div>
+        <div class="range-label">Performance Anxiety {{ percentAnxiety }}%</div>
       </div>
       <input
         class="range-slider"
@@ -45,14 +48,13 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
         :max="allClips.length - 1"
       />
     </div>
-    <prismic-rich-text
-      class="project-title balance-text"
-      :field="homepage.data.title"
-    />
-    <div class="tags">
+    <div class="project-title balance-text">
+      {{ $prismic.asText(homepage.data.title) }}
+    </div>
+    <div class="works-tags-list">
       <div
         @click="setListState(tag)"
-        class="tag"
+        class="work-tag"
         v-for="tag in visibleWorks"
         :key="tag"
         :style="{
@@ -251,17 +253,23 @@ export default {
 </script>
 
 <style>
+.homepage {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
 .range-labels {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.range-labels div + .range-labels div {
+.range-label + .range-label {
   text-align: right;
 }
 .range-slider {
   cursor: pointer;
+  /* width: 100%; */
 }
 
 input[type="range"]::-webkit-slider-thumb,
@@ -284,7 +292,7 @@ input[type="range"]::-moz-range-track {
   border-radius: 3px;
 }
 
-.tags .tag {
+.works-tags-list .work-tag {
   margin-top: 1rem;
   display: inline-block;
   font-size: 24px;
@@ -297,7 +305,7 @@ input[type="range"]::-moz-range-track {
   transition: cubic-bezier(0.165, 0.84, 0.44, 1) 0.5s opacity;
 }
 
-.tags {
+.works-tags-list {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -357,21 +365,25 @@ input[type="range"]::-moz-range-track {
   margin: auto;
 }
 
+@media screen and (max-width: 480px) {
+  .project-title {
+  }
+}
+
 .interactive {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
   width: 70vw;
-  max-width: 1080px;
-  margin: 5rem auto 10rem;
+  max-height: 50vh;
+  max-width: 600px;
+  margin: 5rem auto 5rem;
 }
 
 .interactive video {
   width: 100%;
   border-radius: 8px;
   aspect-ratio: 1.5;
-  max-width: 1080px;
-  max-height: 720px;
 }
 
 .slide-next-enter-active,
