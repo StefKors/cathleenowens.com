@@ -42,7 +42,7 @@ export default {
     apiOptions: {
       routes: [{
         type: "page",
-        path: "/:uid"
+        path: "/:type/:uid"
       }]
     },
     linkResolver: function (doc) {
@@ -54,8 +54,8 @@ export default {
         return '/';
       }
 
-      if (doc.type === 'page') {
-        return '/' + doc.uid;
+      if (['page', 'artwork', 'publication', 'exhibition'].includes(doc.type)) {
+        return '/' + doc.type + '/' + doc.uid;
       }
 
       return '/not-found';
