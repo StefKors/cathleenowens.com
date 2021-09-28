@@ -24,8 +24,10 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
       />
       <prismic-rich-text class="article" :field="document.data.article" />
     </section>
+    <!-- slice won't show up if no slices are set -->
     <slice-zone
       class="images"
+      v-if="slices.length"
       :type="$route.params.type"
       :uid="$route.params.uid"
       :resolver="({ sliceName }) => slices[sliceName]"
