@@ -27,7 +27,7 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
     <!-- slice won't show up if no slices are set -->
     <slice-zone
       class="images"
-      v-if="slices.length"
+      v-if="document.data.slices.length > 0"
       :type="$route.params.type"
       :uid="$route.params.uid"
       :resolver="({ sliceName }) => slices[sliceName]"
