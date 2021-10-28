@@ -36,7 +36,7 @@ export default {
 }
 
 .caption {
-  color: #6a74eb;
+  color: var(--color);
 }
 
 @media (max-width: 767px) {

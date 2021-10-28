@@ -304,7 +304,7 @@ input[type="range"]::-webkit-slider-runnable-track,
 input[type="range"]::-moz-range-track {
   width: 100%;
   height: 5px;
-  background: rgba(149, 158, 251, 0.2);
+  background: var(--color-02);
   border-radius: 3px;
 }
 
@@ -312,10 +312,10 @@ input[type="range"]::-moz-range-track {
   margin-top: 1rem;
   display: inline-block;
   font-size: 24px;
-  color: #6a74eb;
+  color: var(--color);
   text-align: center;
   padding: 6px 10px;
-  background: rgba(149, 158, 251, 0.2);
+  background: var(--color-02);
   text-decoration: none;
   user-select: none;
   transition: cubic-bezier(0.165, 0.84, 0.44, 1) 0.5s opacity;

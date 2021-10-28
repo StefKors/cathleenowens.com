@@ -115,13 +115,12 @@ article {
 }
 .tags a {
   margin-top: 1rem;
-  background: rgba(119, 119, 255, 0.329);
   display: inline-block;
   font-size: 12px;
-  color: #6a74eb;
+  color: var(--color);
   text-align: center;
   padding: 3px 5px;
-  background: rgba(149, 158, 251, 0.2);
+  background: var(--color-02);
   text-decoration: none;
 }
 

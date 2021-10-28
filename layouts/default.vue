@@ -13,6 +13,8 @@
 :root {
   --font: #3c3b43;
   --background: #f8f7f4;
+  --color: #6a74eb;
+  --color-02: rgba(149, 158, 251, 0.2);
 }
 
 html {
