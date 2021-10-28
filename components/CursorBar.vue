@@ -53,8 +53,8 @@ export default {
   transition-property: transform, opacity;
   transform-origin: center;
   position: fixed;
-  background: #959efb;
-  box-shadow: 0 0 30px 30px #959efb;
+  background: var(--color-bright);
+  box-shadow: 0 0 30px 30px var(--color-bright);
   width: 0px;
   height: 10000px;
   display: block;

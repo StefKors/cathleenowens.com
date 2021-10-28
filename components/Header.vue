@@ -4,9 +4,7 @@
       <nuxt-link to="/"> Cathleen Owens </nuxt-link>
     </div>
 
-    <!-- <div class="menu">
-      <img src="/Menu.svg" alt="" srcset="">
-    </div> -->
+    <nuxt-link to="/about">About</nuxt-link>
   </div>
 </template>
 

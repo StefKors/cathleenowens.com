@@ -27,7 +27,7 @@ export default {
   aspect-ratio: 16 / 9;
 }
 .caption {
-  color: #6a74eb;
+  color: var(--color);
 }
 
 @media (max-width: 767px) {

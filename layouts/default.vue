@@ -13,6 +13,14 @@
 :root {
   --font: #3c3b43;
   --background: #f8f7f4;
+  --color: #0073b1;
+  --color-bright: rgb(10, 102, 194);
+  --color-02: rgba(10, 102, 194, 0.2);
+  --color-blob: rgba(10, 102, 194, 0.9);
+}
+
+a {
+  color: var(--color-bright);
 }
 
 html {

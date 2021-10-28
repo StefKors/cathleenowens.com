@@ -44,7 +44,7 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
-  fill: rgba(149, 158, 251, 0.938);
+  fill: var(--color-blob);
   width: 90vw;
   z-index: -1;
   animation: move 60s ease-in-out infinite;
@@ -53,8 +53,8 @@ export default {
 }
 
 .blob svg {
-  filter: drop-shadow(0 0 30px 30px rgba(149, 158, 251, 0.938));
-  -webkit-filter: drop-shadow(0 0 30px 30px rgba(149, 158, 251, 0.938));
+  filter: drop-shadow(0 0 30px 30px var(--color-blob));
+  -webkit-filter: drop-shadow(0 0 30px 30px var(--color-blob));
 }
 
 @keyframes move {

@@ -88,7 +88,7 @@ export default {
 article {
   padding-top: 9rem;
   display: grid;
-  grid-template-columns: minmax(auto, 600px) minmax(400px, 600px);
+  grid-template-columns: minmax(50vw, 600px) minmax(400px, 600px);
   margin-left: 5vw;
   margin-right: 5vw;
   gap: 2rem;
@@ -97,7 +97,7 @@ article {
 .title {
   font-family: "Cardo", monospace;
   font-weight: bold;
-  font-size: 72px;
+  font-size: 58px;
   color: #3c3b43;
   line-height: 0.9;
 }
@@ -115,13 +115,12 @@ article {
 }
 .tags a {
   margin-top: 1rem;
-  background: rgba(119, 119, 255, 0.329);
   display: inline-block;
   font-size: 12px;
-  color: #6a74eb;
+  color: var(--color);
   text-align: center;
   padding: 3px 5px;
-  background: rgba(149, 158, 251, 0.2);
+  background: var(--color-02);
   text-decoration: none;
 }
 
