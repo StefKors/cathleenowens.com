@@ -88,7 +88,7 @@ export default {
 article {
   padding-top: 9rem;
   display: grid;
-  grid-template-columns: minmax(auto, 600px) minmax(400px, 600px);
+  grid-template-columns: minmax(50vw, 600px) minmax(400px, 600px);
   margin-left: 5vw;
   margin-right: 5vw;
   gap: 2rem;
@@ -97,7 +97,7 @@ article {
 .title {
   font-family: "Cardo", monospace;
   font-weight: bold;
-  font-size: 72px;
+  font-size: 58px;
   color: #3c3b43;
   line-height: 0.9;
 }
