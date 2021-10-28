@@ -54,24 +54,20 @@ https://www.slicemachine.dev/documentation/nuxt/add-the-slice-zone-to-your-page
     <div class="works-tags-list">
       <div
         @click="setListState(tag)"
-        class="work-tag"
+        :class="(filter.includes(tag) ? 'matched-tag ' : '') + 'work-tag'"
         v-for="tag in tags"
         :key="tag"
-        :style="{
-          opacity: filter.includes(tag) ? 1 : 0.5,
-        }"
       >
         {{ tag }}s
       </div>
     </div>
     <div id="works" class="artworks-list">
       <div
-        class="page-link"
+        :class="
+          (!filter.includes(page.type) ? 'matched-link ' : '') + 'page-link'
+        "
         v-for="page in allWorks"
         :key="page.id"
-        :style="{
-          opacity: filter.includes(page.type) ? 1 : 0,
-        }"
         :data-site-year="page.date.getFullYear()"
       >
         <a :href="page.url" v-if="page.url.startsWith('http')">
@@ -319,6 +315,11 @@ input[type="range"]::-moz-range-track {
   text-decoration: none;
   user-select: none;
   transition: cubic-bezier(0.165, 0.84, 0.44, 1) 0.5s opacity;
+  opacity: 0.5;
+}
+
+.works-tags-list .work-tag.matched-tag {
+  opacity: 1;
 }
 
 .works-tags-list {
@@ -336,10 +337,15 @@ input[type="range"]::-moz-range-track {
   gap: 0.8rem;
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .page-link {
   transition: cubic-bezier(0.165, 0.84, 0.44, 1) 0.5s opacity;
+}
+
+.page-link.matched-link a {
+  opacity: 0;
 }
 
 .page-link a {
@@ -430,5 +436,27 @@ input[type="range"]::-moz-range-track {
 }
 .slide-prev-leave-active {
   transform: translateX(31px);
+}
+
+@media screen and (max-width: 480px) {
+  .works-tags-list {
+    gap: 6px;
+  }
+  .works-tags-list .work-tag {
+    font-size: 16px;
+    padding: 2px 5px;
+  }
+
+  .page-link .details {
+    display: none;
+  }
+
+  .page-link a {
+    font-size: 16px;
+  }
+
+  .page-link.matched-link {
+    display: none;
+  }
 }
 </style>
