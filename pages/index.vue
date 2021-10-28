@@ -290,7 +290,7 @@ export default {
 
 input[type="range"]::-webkit-slider-thumb,
 input[type="range"]::-moz-range-thumb {
-  background-color: #959efb;
+  background-color: var(--color-bright);
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 2rem;
